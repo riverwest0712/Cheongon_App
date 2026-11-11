@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btnFloatingChatbot"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:background="@drawable/circle"
+    android:clickable="true"
+    android:elevation="8dp"
+    android:focusable="true">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:contentDescription="챗봇 열기"
+        android:scaleType="fitCenter"
+        android:src="@drawable/chat_logo" />
+
+</FrameLayout>

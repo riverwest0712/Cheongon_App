@@ -1,0 +1,22 @@
+코사인 유사도 문제점 (왜곡)
+cosine([1, 1, 1], [incomeSim, householdSim, vulnerableSim]) 사용중
+세 요소 값의 비율이 같으면 점수가 저조하더라도 모두 [1, 1, 1]과 방향이 같아서 100점이 나옴
+예시
+Cosine([1, 1, 1], [1, 1, 1]) = 1.0 -> 100점
+Cosine([1, 1, 1], [0.2, 0.2, 0.2]) = 1.0 -> 100점
+
+해결
+유클리드 거리 / 유클리드 유사도 -> 원점 거리에서 코사인 유사도 곱하기 
+// 1. 기존 코사인 유사도 (방향 계산: 0 ~ 1)
+const cosSim = cosine([1, 1, 1], [incomeSim, householdSim, vulnerableSim]);
+
+// 2. 원점 [0,0,0]으로부터 [1,1,1]까지의 유클리드 거리 비율 (크기 계산: 0 ~ 1)
+// [1,1,1]일 때 최대 거리 sqrt(3) ≈ 1.732
+const distanceRatio = Math.sqrt(
+  incomeSim ** 2 + householdSim ** 2 + vulnerableSim ** 2
+) / Math.sqrt(3);
+
+// 3. 방향(코사인) x 크기(유클리드 거리 비율) 융합
+const finalSimilarity = cosSim * distanceRatio;
+
+const score = Number((baseScore + finalSimilarity * 50).toFixed(2));

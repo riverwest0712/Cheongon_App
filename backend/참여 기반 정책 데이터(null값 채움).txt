@@ -1,0 +1,74 @@
+참여 기반 정책 데이터
+
+-- 참여 기반 정책 데이터 삭제 코드(기존에 정책 넣었을 경우 데이터 다 삭제하고 넣는게 편함, 안넣었으면 실행 안해도 됨)
+
+DELETE FROM policy
+WHERE policy_id = 'PAR0001';
+
+
+-- 참여 기반 정책 데이터 null값 채움(housing_type, rent_support, deposit_support, house_ownership은 null값)
+
+-- ==================================================================
+-- 참여 기반 정책 데이터 추가
+-- ==================================================================
+INSERT INTO policy (
+    policy_id,
+    policy_name,
+    category,
+    category_sub,
+    description,
+    support_content,
+    min_age,
+    max_age,
+    min_income,
+    max_income,
+    region,
+    organization,
+    apply_url,
+    start_date,
+    end_date,
+    created_at,
+    gender_condition,
+    employment_condition,
+    household_condition,
+    vulnerable_condition,
+    military_condition,
+    target_status,
+    apply_condition,
+    income_condition,
+    special_target,
+    apply_status,
+    benefit_amount,
+    application_method
+)
+VALUES
+(
+'PAR0001',
+'청년친화도시 확산',
+'참여·권리',
+'참여',
+'청년의 참여를 바탕으로 청년이 살기 좋은 환경과 혁신 성장 동력을 갖춘 청년친화도시를 조성하고 타 지역으로 확산',
+'청년친화도시 추진목적을 달성할 수 있도록 행·재정적 지원',
+19,
+39,
+'무관',
+4500,
+'충청남도',
+'청년정책관',
+'https://youth.chungnam.go.kr/web/main/customSupp/M05008/view?bizId=A20260309CT000000000003012',
+'20260131',
+'20261231',
+NOW(),
+'무관',
+'기타',
+'청년 1인가구',
+'취약계층 우대',
+'무관',
+'상시모집',
+'별도 문의',
+'무관',
+'무관',
+'상시',
+'해당없음',
+'별도 문의'
+);

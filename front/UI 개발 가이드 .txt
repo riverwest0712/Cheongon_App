@@ -1,0 +1,144 @@
+!!!! MainActivity는 서버 연결용임 건들 ㄴㄴ 메인 화면 자바는 Main.java 건드려야 됨 !!!!
+
+---------------------------------------------------------------------------------
+파일 정리
+API: 
+- ApiClient 서버 연결 설정
+- ApiService 서버 API 요청
+
+main:
+- Main 메인화면
+- BottomMenu 하단 메뉴
+- Hamburger 햄버거 메뉴
+- TopHeader 상단 메뉴
+
+login:
+- FindPasswordActivity
+- LoginActivity
+- SignupActivity
+
+mypage:
+- MyPageActivity
+- ChatbotActivity
+- CalendarActivity
+
+recommendation:
+- ConditionInputActivity 조건입력 화면
+- PolicyAdapter 정책 카드 연결
+- PolicyDetailActivity
+- RecommendationActivity 정책 결과 화면
+- Recommendation 정책 데이터 연결
+- Bookmark
+- BookmarkActivity
+
+community:
+- BoardActivity 커뮤니티 게시판 메인 화면
+- Comment 댓글 데이터 모델
+- CommentAdapter 댓글 목록 카드 연결 어댑터
+- LikedPostsActivity 좋아요 누른 게시물 목록 화면
+- MyCommentAdapter 내가 쓴 댓글 목록 카드 연결 어댑터
+- MyCommentsActivity 내가 쓴 댓글 목록 화면
+- MyPostsActivity 내가 쓴 게시글 목록 화면
+- Post 게시글 데이터 모델
+- PostAdapter 게시글 목록 카드 연결 어댑터
+- PostDetailActivity 게시글 상세 화면
+- PostWriteActivity 게시글 작성 및 수정 화면
+
+server:
+- MainActivity 서버 연결용
+---------------------------------------------------------------------------------
+
+소셜 로그인 SHA-1 값 얻는 법: 
+안드로이드 터미널 
+$env:JAVA_HOME="C:\Program Files\Android\Android Studio\jbr"
+.\gradlew signingReport 입력 후 SHA1 값만 복사
+
+대표 컬러: #2563EB
+배경 컬러: #F5F6F8
+흰색 컬러: #FFFFFF
+하늘 컬러: #EFF6FF
+진한 회색 컬러: #8D8D8D (= 아이콘 색)
+연한 회색 컬러: #F8F9FC (=edittext_background)
+
+하단 바
+홈 정책찾기 취업도구 커뮤니티 마이페이지
+
+햄버거 
+홈 - 메인
+정책찾기 - 조건 설정, 추천 정책 결과, 찜한 정책, 정책 캘린더
+취업 도구 - 자소서 첨삭, 면접 질문 생성
+커뮤니티 - 게시판, 내가 쓴 게시글, 내가 쓴 댓글, 좋아요 누른 게시물
+마이페이지 - 회원정보 수정, 챗봇 , 설정/로그아웃
+
+상단 바 높이 70dp로 통일 
+
+결과 뽑을 때 catogory_sub, category 둘 다 써도 될 듯
+
+공통 코드
+
+상단 바 자바
+<include
+    android:id="@+id/topHeader"
+    layout="@layout/top_header"
+    android:layout_width="match_parent"
+    android:layout_height="40dp" />
+
+new TopHeader(this); <-자바
+
+뒤로 가기 xml코드 
+<ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back" />
+
+뒤로가기 자바 코드
+btnBack.setOnClickListener(view -> {
+    finish();
+});
+
+:: 하단 바 코드
+<!-- 공통 하단바 -->
+<include
+    android:id="@+id/bottomMenu"
+    layout="@layout/bottom_menu"
+    android:layout_width="0dp"
+    android:layout_height="80dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+new BottomMenu(this); <- 자바
+
+:: 햄버거 추가 코드
+<!-- 햄버거 메뉴 -->
+<include
+    android:id="@+id/drawerMenuInclude"
+    layout="@layout/hamburger"
+    android:layout_width="320dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="end" />
+
+new Hamburger(this); <- 자바
+
+
+:: 플로팅 챗봇 추가 코드
+<!-- 공통 챗봇 플로팅 버튼 포함 -->
+<include
+    layout="@layout/layout_floating_chatbot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="96dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+
+FloatingChatbotHelper.init(this); <- 자바
+
+
+===
+!) 하단바랑 플로팅 버튼은 ConstraintLayout 안에 넣기!
+
+!) Toast Message말고 SnackBar 사용하기!

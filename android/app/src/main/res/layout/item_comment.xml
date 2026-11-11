@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="14dp">
+
+        <!-- 작성자 -->
+        <TextView
+            android:id="@+id/txtCommentWriter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3F7BFF"
+            android:textStyle="bold"
+            android:textSize="11sp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:background="@drawable/bg_category"
+            tools:text="작성자" />
+
+        <!-- 작성 날짜 -->
+        <TextView
+            android:id="@+id/txtCommentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@id/txtCommentWriter"
+            android:layout_alignBottom="@id/txtCommentWriter"
+            android:gravity="center_vertical"
+            android:textColor="#999999"
+            android:textSize="12sp"
+            tools:text="2026-09-02" />
+
+        <!-- 댓글 본문 내용 -->
+        <TextView
+            android:id="@+id/txtCommentContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtCommentWriter"
+            android:layout_marginTop="10dp"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            tools:text="댓글 내용이 들어가는 영역입니다." />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

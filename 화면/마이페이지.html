@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>청온 - 마이페이지</title>
+
+  <link rel="stylesheet" href="마이페이지.css" />
+</head>
+
+<body>
+  <div class="page"> 
+
+    <header class="header">
+      <div class="header-inner">
+
+        <a href="메인화면.html" class="logo">
+          <span class="logo-mark">청</span>
+          <span>청온</span>
+        </a>
+
+        <nav class="nav">
+          <a href="메인화면.html">홈</a>
+          <a href="챗봇.html">챗봇</a>
+          <a href="마이페이지.html" class="active-link">마이페이지</a>
+          <a href="#" id="logoutBtn" class="login-btn">로그아웃</a>
+        </nav>
+
+      </div>
+    </header>
+
+    <main class="mypage">
+
+      <section class="mypage-layout">
+
+        <aside class="side-menu">
+
+          <button class="menu-btn active" data-tab="recommended">
+            추천 정책
+          </button>
+
+          <button class="menu-btn" data-tab="favorite">
+            관심 정책
+          </button>
+
+          <button class="menu-btn" data-tab="calendar">
+            캘린더
+          </button>
+
+          
+
+        </aside>
+
+        <section class="content-panel">
+
+          <div class="panel-head">
+
+            <div class="mypage-sort">
+
+              <label for="mypageSort">정렬</label>
+
+              <select id="mypageSort">
+                <option value="score">적합도 순</option>
+                <option value="name">이름순</option>
+              </select>
+
+            </div>
+
+          </div>
+
+          <div id="contentArea" class="content-area"></div>
+
+        </section>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"></script>
+
+
+  <script src="마이페이지.js"></script>
+
+</body>
+</html>

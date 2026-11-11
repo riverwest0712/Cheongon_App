@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F6F8">
+        <include
+            android:id="@+id/topHeader"
+            layout="@layout/top_header"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/bottomMenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topHeader">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="20dp" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" >
+                    <ImageView
+                        android:id="@+id/btnBack"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="뒤로가기"
+                        android:src="@drawable/ic_back"
+                        android:padding="14dp"
+                        android:scaleType="fitCenter"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:tint="#191F28" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="소득 계산기"
+                        android:textColor="#191F28"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:text="가구의 월 소득인정액을 예상합니다. 모든 금액은 만원 단위입니다."
+                    android:textColor="#6B7684"
+                    android:textSize="13sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+                <TextView
+                    style="@style/IncomeSectionTitle"
+                    android:text="1. 기본 정보"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+                <LinearLayout
+                    style="@style/IncomeSectionCard"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" >
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:text="학생 결혼 여부" />
+                    <RadioGroup
+                        android:id="@+id/rgMarriage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbUnmarried"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/rbUnmarried"
+                            app:buttonTint="@color/income_selection_tint"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="미혼" />
+                        <RadioButton
+                            android:id="@+id/rbMarried"
+                            app:buttonTint="@color/income_selection_tint"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="기혼" />
+                    </RadioGroup>
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="12dp"
+                        android:text="학생 포함 형제·자매 수" />
+                    <Spinner
+                        android:id="@+id/spinnerSiblingCount"
+                        style="@style/IncomeSpinner" />
+                </LinearLayout>
+                <TextView
+                    style="@style/IncomeSectionTitle"
+                    android:text="2. 월 소득"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+                <LinearLayout
+                    style="@style/IncomeSectionCard"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" >
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:text="학생 근로·사업소득" />
+                    <EditText
+                        android:id="@+id/etStudentIncome"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                    <TextView
+                        style="@style/IncomeHelperText"
+                        android:text="학생 근로·사업소득은 월 130만원 정액공제를 적용합니다." />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="부모 또는 배우자 근로소득" />
+                    <EditText
+                        android:id="@+id/etFamilyWorkIncome"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="가구 사업소득" />
+                    <EditText
+                        android:id="@+id/etBusinessIncome"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="임대·이자·연금소득" />
+                    <EditText
+                        android:id="@+id/etPropertyIncome"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="공적이전 등 기타소득" />
+                    <EditText
+                        android:id="@+id/etOtherIncome"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                </LinearLayout>
+                <TextView
+                    style="@style/IncomeSectionTitle"
+                    android:text="3. 일반재산"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+                <LinearLayout
+                    style="@style/IncomeSectionCard"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" >
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:text="주택·건축물·토지" />
+                    <EditText
+                        android:id="@+id/etRealEstate"
+                        style="@style/IncomeAmountInput"
+                        android:hint="시가표준액 0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="전·월세 임차보증금" />
+                    <EditText
+                        android:id="@+id/etLeaseDeposit"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="기타 일반재산" />
+                    <EditText
+                        android:id="@+id/etOtherProperty"
+                        style="@style/IncomeAmountInput"
+                        android:hint="회원권·분양권 등 0만원" />
+                </LinearLayout>
+                <TextView
+                    style="@style/IncomeSectionTitle"
+                    android:text="4. 금융재산·자동차"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+                <LinearLayout
+                    style="@style/IncomeSectionCard"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" >
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:text="금융재산" />
+                    <EditText
+                        android:id="@+id/etFinancialProperty"
+                        style="@style/IncomeAmountInput"
+                        android:hint="예금·적금·주식·보험 등 0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="자동차 가액" />
+                    <EditText
+                        android:id="@+id/etVehicleValue"
+                        style="@style/IncomeAmountInput"
+                        android:hint="보험개발원 가액 0만원" />
+                    <CheckBox
+                        android:id="@+id/cbDisabledVehicle"
+                        app:buttonTint="@color/income_selection_tint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="장애인 소유 자동차 1대 면제 대상" />
+                </LinearLayout>
+                <TextView
+                    style="@style/IncomeSectionTitle"
+                    android:text="5. 인정 부채"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+                <LinearLayout
+                    style="@style/IncomeSectionCard"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" >
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:text="금융기관 대출금" />
+                    <EditText
+                        android:id="@+id/etFinancialDebt"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="한국장학재단 학자금대출" />
+                    <EditText
+                        android:id="@+id/etStudentLoanDebt"
+                        style="@style/IncomeAmountInput"
+                        android:hint="잔액 0만원" />
+                    <TextView
+                        style="@style/IncomeFieldLabel"
+                        android:layout_marginTop="14dp"
+                        android:text="임대보증금 등 기타 인정 부채" />
+                    <EditText
+                        android:id="@+id/etOtherDebt"
+                        style="@style/IncomeAmountInput"
+                        android:hint="0만원" />
+                    <TextView
+                        style="@style/IncomeHelperText"
+                        android:text="마이너스 통장, 한도대출, 카드론 등은 인정 부채에서 제외될 수 있습니다." />
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCalculateIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="26dp"
+                    android:background="@drawable/logo_background"
+                    android:text="월 소득인정액 계산하기"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+                <LinearLayout
+                    android:id="@+id/layoutIncomeResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_income_result"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="예상 월 소득인정액"
+                        android:textColor="#2563EB"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvRecognizedMonthlyIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="0만원"
+                        android:textColor="#191F28"
+                        android:textSize="27sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvIncomeEvaluationResult"
+                        style="@style/IncomeResultLine"
+                        android:text="월 소득평가액 0만원" />
+                    <TextView
+                        android:id="@+id/tvPropertyConversionResult"
+                        style="@style/IncomeResultLine"
+                        android:text="재산의 월 소득환산액 0만원" />
+                    <TextView
+                        android:id="@+id/tvSiblingDeductionResult"
+                        style="@style/IncomeResultLine"
+                        android:text="형제·자매 공제액 -0만원" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnUseCalculatedIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="18dp"
+                        android:text="이 금액 사용하기" />
+                    <TextView
+                        style="@style/IncomeHelperText"
+                        android:text="모의 계산 결과이며 한국장학재단의 최종 결과와 다를 수 있습니다." />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+        <include
+            android:id="@+id/bottomMenu"
+            layout="@layout/bottom_menu"
+            android:layout_width="0dp"
+            android:layout_height="76dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/drawerMenuInclude"
+        layout="@layout/hamburger"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
+</androidx.drawerlayout.widget.DrawerLayout>

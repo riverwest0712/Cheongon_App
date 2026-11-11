@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>청온 - 청냥이 챗봇</title>
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+    --main-color: #2960cf;
+    --bg-chat: #f3f7ff;
+    --white: #ffffff;
+    --bubble-user: #2960cf;
+    --bubble-ai: #ffffff;
+    --text-main: #333;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', sans-serif;
+    background-color: var(--bg-chat);
+}
+
+/* 상단바 */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e8edf7;
+}
+
+.header-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 26px;
+    font-weight: 900;
+    color: #2f6fed;
+    text-decoration: none;
+}
+
+.logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2f6fed, #8eb4ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #566174;
+}
+
+.nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav a:hover,
+.nav .active-link {
+    color: #2f6fed;
+}
+
+.login-btn {
+    border: none;
+    background: #2f6fed;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(47, 111, 237, 0.22);
+    cursor: pointer;
+}
+
+/* 🔥 채팅 컨테이너 중앙 정렬 */
+.chat-container {
+    width: 100%;
+    max-width: 450px;
+    height: 85vh;
+    margin: 40px auto;
+
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* 헤더 */
+.chat-header {
+    background: var(--main-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 메시지 영역 */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--bg-chat);
+}
+
+/* AI 메시지 */
+.message.ai {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.chat-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.ai-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.bot-name {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.bubble {
+    max-width: 280px;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+/* AI bubble */
+.ai .bubble {
+    background: white;
+    border-top-left-radius: 2px;
+}
+
+/* 사용자 */
+.message.user {
+    align-self: flex-end;
+}
+
+.user .bubble {
+    background: var(--bubble-user);
+    color: white;
+    border-top-right-radius: 2px;
+}
+
+/* 입력창 */
+.chat-input-area {
+    padding: 15px;
+    background: white;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #eee;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+}
+
+.send-btn {
+    background: var(--main-color);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 상단바 -->
+<header class="header">
+    <div class="header-inner">
+        <a href="메인화면.html" class="logo">
+            <div class="logo-mark">청</div>
+            <span>청온</span>
+        </a>
+
+        <nav class="nav">
+            <a href="메인화면.html">홈</a>
+            <a href="챗봇.html" class="active-link">챗봇</a>
+            <a href="마이페이지.html">마이페이지</a>
+            <button class="login-btn" id="authBtn"></button>
+        </nav>
+    </div>
+</header>
+
+<!-- 채팅 -->
+<div class="chat-container">
+    <div class="chat-header">청온 정책 챗봇 🐾</div>
+
+    <div class="chat-messages" id="chatWindow">
+        <div class="message ai">
+            <img src="img/chat.png" class="chat-img">
+            <div class="ai-content">
+                <span class="bot-name">청냥이</span>
+                <div class="bubble">
+                    안녕! 나는 청온의 도우미 청냥이다냥 🐾<br>
+                    궁금한 건 뭐든 편하게 물어봐줘!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-input-area">
+        <input id="userInput" class="chat-input" placeholder="메시지를 입력하세요..."
+        onkeypress="if(event.keyCode==13) sendMessage()">
+        <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+</div>
+
+<script>
+const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+
+window.onload = function () {
+    const btn = document.getElementById('authBtn');
+    if (!btn) return;
+
+    if (loginUser) {
+        btn.innerText = "로그아웃";
+        btn.onclick = function () {
+            localStorage.removeItem("loginUser");
+            alert("로그아웃 되었습니다.");
+            window.location.href = "메인화면.html";
+        };
+    } else {
+        btn.innerText = "로그인";
+        btn.onclick = () => window.location.href = "로그인.html";
+    }
+};
+
+
+async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const chatWindow = document.getElementById('chatWindow');
+    const userText = input.value.trim();
+
+    if (!userText) return;
+
+    chatWindow.innerHTML += `
+        <div class="message user">
+            <div class="bubble">${userText}</div>
+        </div>
+    `;
+
+    input.value = "";
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+
+    const loadingId = "load" + Date.now();
+
+    chatWindow.innerHTML += `
+        <div class="message ai" id="${loadingId}">
+            <img src="img/chat.png" class="chat-img">
+            <div class="ai-content">
+                <span class="bot-name">청냥이</span>
+                <div class="bubble">생각 중...</div>
+            </div>
+        </div>
+    `;
+
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message: userText})
+        });
+
+const data = await res.json();
+
+if (!res.ok || data.success === false) {
+    throw new Error(
+        data.error?.detail ||
+        data.message ||
+        "챗봇 요청에 실패했습니다."
+    );
+}
+
+document.getElementById(loadingId)?.remove();
+
+const reply =
+    data.data?.reply ??
+    data.reply ??
+    data.message ??
+    "답변을 불러오지 못했습니다.";
+
+chatWindow.innerHTML += `
+    <div class="message ai">
+        <img src="img/chat.png" class="chat-img">
+        <div class="ai-content">
+            <span class="bot-name">청냥이</span>
+            <div class="bubble">${reply}</div>
+        </div>
+    </div>
+`;
+
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+    } catch (e) {
+        document.getElementById(loadingId).remove();
+
+        chatWindow.innerHTML += `
+            <div class="message ai">
+                <img src="img/chat.png" class="chat-img">
+                <div class="ai-content">
+                    <span class="bot-name">청냥이</span>
+                    <div class="bubble">서버 오류났다냥 🐾</div>
+                </div>
+            </div>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>

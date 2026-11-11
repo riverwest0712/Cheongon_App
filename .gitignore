@@ -1,0 +1,37 @@
+# 환경 변수 및 비밀 정보
+.env
+.env.*
+!.env.example
+
+# Node.js 의존성
+node_modules/
+
+# 빌드 결과물
+dist/
+build/
+.gradle/
+.gradle.kts/
+
+# 개발 도구
+.idea/
+.vscode/
+
+# 로그
+*.log
+
+# 운영체제
+.DS_Store
+Thumbs.db
+
+# Android 로컬 설정 및 생성 파일
+local.properties
+**/.gradle/
+**/build/
+
+# 공개 저장소 업로드 제외
+server/db.js
+server/google-auth.js
+server/toss-payments.js
+server/ApiConfig.java
+android/app/src/main/java/com/example/cheongon/login/SocialLoginManager.java
+android/app/src/main/res/values/strings.xml

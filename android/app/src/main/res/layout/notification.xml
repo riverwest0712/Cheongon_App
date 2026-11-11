@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6F8"
+    tools:context=".mypage.NotificationActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notificationRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/topHeader"
+            layout="@layout/top_header"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <LinearLayout
+            android:id="@+id/notificationHeading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="12dp"
+            app:layout_constraintTop_toBottomOf="@id/topHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:paddingHorizontal="12dp"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="14dp"
+                    android:scaleType="fitCenter"
+                    app:tint="#191F28"
+                    android:src="@drawable/ic_back"
+                    android:contentDescription="뒤로가기"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="알림"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#191F28" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/notificationSummary"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="읽지 않은 알림 0개"
+                android:textColor="#4E5968"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <HorizontalScrollView
+            android:id="@+id/notificationFilterScroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingHorizontal="20dp"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/notificationHeading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/notificationFilters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleLine="true"
+                app:singleSelection="true"
+                app:selectionRequired="true" />
+        </HorizontalScrollView>
+        <LinearLayout
+            android:id="@+id/notificationActions"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/notificationFilterScroll"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <ImageView
+                android:id="@+id/notificationRetry"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:src="@drawable/ic_refresh_notification"
+                android:contentDescription="알림 새로고침"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+            <ImageButton
+                android:id="@+id/markAllRead"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:src="@android:drawable/checkbox_on_background"
+                android:tint="#7C3AED"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="모든 알림 읽음 처리" />
+        </LinearLayout>
+        <ScrollView
+            android:id="@+id/notificationScroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@id/notificationActions"
+            app:layout_constraintBottom_toTopOf="@id/bottomMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/notificationList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+                <LinearLayout
+                    android:id="@+id/notificationEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="64dp"
+                    android:paddingBottom="40dp">
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="16dp"
+                        android:src="@drawable/notification_g"
+                        android:background="@drawable/notification_icon_background"
+                        android:importantForAccessibility="no" />
+                    <TextView
+                        android:id="@+id/notificationEmptyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="아직 알림이 없어요"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#111827" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="새로운 소식이 도착하면&#xA;이곳에서 알려드릴게요."
+                        android:textSize="14sp"
+                        android:textColor="#64748B"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+        <include
+            android:id="@+id/bottomMenu"
+            layout="@layout/bottom_menu"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/drawerMenuInclude"
+        layout="@layout/hamburger"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
+</androidx.drawerlayout.widget.DrawerLayout>

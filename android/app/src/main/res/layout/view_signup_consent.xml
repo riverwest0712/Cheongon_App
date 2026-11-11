@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 일반 CheckBox 대신 MaterialCheckBox 사용 -->
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/agreeTerms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:background="@android:color/transparent"
+            app:buttonTint="#235AC7"
+            app:checkedIconTint="@android:color/white"
+            android:text="[필수] 이용약관 동의"
+            android:textColor="#253047"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/viewTerms"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:backgroundTint="@null"
+            android:text="보기"
+            android:contentDescription="이용약관 보기"
+            android:textColor="#235AC7"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/agreePrivacy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:background="@android:color/transparent"
+            app:buttonTint="#235AC7"
+            app:checkedIconTint="@android:color/white"
+            android:text="[필수] 개인정보 수집·이용 동의"
+            android:textColor="#253047"
+            android:textSize="13sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/viewPrivacy"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:backgroundTint="@null"
+            android:text="보기"
+            android:contentDescription="개인정보 수집·이용 동의 내용 보기"
+            android:textColor="#235AC7"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

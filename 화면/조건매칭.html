@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>청온 - 정책 결과</title>
+
+  <link rel="stylesheet" href="조건매칭.css" />
+</head>
+
+<body>
+  <header class="header">
+  <div class="header-inner">
+    <div class="logo" onclick="location.href='메인화면.html'">
+      <span class="logo-mark">청</span>
+      <span>청온</span>
+    </div>
+
+    <nav class="nav">
+      <a href="메인화면.html">홈</a>
+      <a href="챗봇.html">챗봇</a>
+      <a href="마이페이지.html">마이페이지</a>
+      <button class="login-btn" onclick="logout()">로그아웃</button>
+    </nav>
+  </div>
+</header>
+
+  <div class="page">
+  <section class="filter-bar">
+    <div class="title-area">
+      <h2>추천 정책 목록</h2>
+      <strong id="policyCount" class="policy-count">0개</strong>
+    </div>
+
+    <div class="sort-area">
+      <label for="sortSelect">정렬</label>
+      <select id="sortSelect">
+        <option value="score">적합도 순</option>
+        <option value="name">이름순</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="policy-list" id="policyList">
+  </section>
+</div>
+
+  <script src="조건매칭.js"></script>
+</body>
+</html>

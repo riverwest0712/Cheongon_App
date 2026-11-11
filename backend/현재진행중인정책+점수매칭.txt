@@ -1,0 +1,198 @@
+-- ==================================================================
+-- 현재 진행중인 policy 테이블 데이터 확인(날짜기준 주택,거주,주거 기준으로만 데이터 나옴)
+-- ==================================================================
+SELECT *
+FROM policy
+WHERE
+    (category_sub LIKE '%주거%'
+     OR category_sub LIKE '%거주%'
+     OR category_sub LIKE '%주택%')
+AND STR_TO_DATE(start_date, '%Y%m%d') <= CURDATE()
+AND STR_TO_DATE(end_date, '%Y%m%d') >= CURDATE();
+
+
+/* ===========================
+   사용자 정보 (테스트용)
+=========================== */
+
+SET @region = '경기도';
+SET @gender = '여성';
+SET @military = '해당없음';
+SET @employment = '근로자';
+SET @age = 25;
+SET @income = 3000;
+SET @household = '1인가구';
+SET @vulnerable = '저소득 청년';
+
+
+/* ===========================
+   추천
+=========================== */
+
+SELECT
+
+    policy_id,
+    policy_name,
+
+    /* ---------- 필수조건 ---------- */
+
+    CASE
+        WHEN region LIKE CONCAT('%', @region, '%')
+        THEN 10
+        ELSE 0
+    END AS region_score,
+
+    CASE
+        WHEN gender_condition='무관'
+          OR gender_condition=@gender
+        THEN 10
+        ELSE 0
+    END AS gender_score,
+
+    CASE
+        WHEN military_condition='무관'
+          OR military_condition LIKE CONCAT('%', @military, '%')
+        THEN 10
+        ELSE 0
+    END AS military_score,
+
+    CASE
+        WHEN employment_condition='무관'
+          OR employment_condition LIKE CONCAT('%', @employment, '%')
+        THEN 10
+        ELSE 0
+    END AS employment_score,
+
+    CASE
+        WHEN @age BETWEEN min_age AND max_age
+        THEN 10
+        ELSE 0
+    END AS age_score,
+
+    /* ---------- 가산점 ---------- */
+
+    CASE
+        WHEN
+            region LIKE CONCAT('%', @region, '%')
+            AND (gender_condition='무관' OR gender_condition=@gender)
+            AND (military_condition='무관'
+                 OR military_condition LIKE CONCAT('%', @military, '%'))
+            AND (employment_condition='무관'
+                 OR employment_condition LIKE CONCAT('%', @employment, '%'))
+            AND (@age BETWEEN min_age AND max_age)
+
+        THEN
+
+            CASE
+                WHEN @income BETWEEN min_income AND max_income
+                THEN 20
+                ELSE 0
+            END
+
+        ELSE 0
+    END AS income_score,
+
+    CASE
+        WHEN
+            region LIKE CONCAT('%', @region, '%')
+            AND (gender_condition='무관' OR gender_condition=@gender)
+            AND (military_condition='무관'
+                 OR military_condition LIKE CONCAT('%', @military, '%'))
+            AND (employment_condition='무관'
+                 OR employment_condition LIKE CONCAT('%', @employment, '%'))
+            AND (@age BETWEEN min_age AND max_age)
+
+        THEN
+
+            CASE
+                WHEN household_condition='무관'
+                  OR household_condition LIKE CONCAT('%', @household, '%')
+                THEN 15
+                ELSE 0
+            END
+
+        ELSE 0
+    END AS household_score,
+
+    CASE
+        WHEN
+            region LIKE CONCAT('%', @region, '%')
+            AND (gender_condition='무관' OR gender_condition=@gender)
+            AND (military_condition='무관'
+                 OR military_condition LIKE CONCAT('%', @military, '%'))
+            AND (employment_condition='무관'
+                 OR employment_condition LIKE CONCAT('%', @employment, '%'))
+            AND (@age BETWEEN min_age AND max_age)
+
+        THEN
+
+            CASE
+                WHEN vulnerable_condition='무관'
+                  OR vulnerable_condition LIKE CONCAT('%', @vulnerable, '%')
+                THEN 15
+                ELSE 0
+            END
+
+        ELSE 0
+    END AS vulnerable_score,
+
+    /* ---------- 총점 ---------- */
+
+    CASE
+
+        WHEN
+
+            region LIKE CONCAT('%', @region, '%')
+
+            AND (gender_condition='무관'
+                 OR gender_condition=@gender)
+
+            AND (military_condition='무관'
+                 OR military_condition LIKE CONCAT('%', @military, '%'))
+
+            AND (employment_condition='무관'
+                 OR employment_condition LIKE CONCAT('%', @employment, '%'))
+
+            AND (@age BETWEEN min_age AND max_age)
+
+        THEN
+
+            50
+
+            +
+
+            CASE
+                WHEN @income BETWEEN min_income AND max_income
+                THEN 20
+                ELSE 0
+            END
+
+            +
+
+            CASE
+                WHEN household_condition='무관'
+                  OR household_condition LIKE CONCAT('%', @household, '%')
+                THEN 15
+                ELSE 0
+            END
+
+            +
+
+            CASE
+                WHEN vulnerable_condition='무관'
+                  OR vulnerable_condition LIKE CONCAT('%', @vulnerable, '%')
+                THEN 15
+                ELSE 0
+            END
+
+        ELSE 0
+
+    END AS total_score
+
+FROM policy
+
+WHERE
+    STR_TO_DATE(start_date,'%Y%m%d') <= CURDATE()
+    AND STR_TO_DATE(end_date,'%Y%m%d') >= CURDATE()
+
+ORDER BY total_score DESC;

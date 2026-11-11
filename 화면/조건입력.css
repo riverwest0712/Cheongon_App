@@ -1,0 +1,196 @@
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background: #f5f7fb;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.header {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 진행 상태 바 */
+.progress-container {
+  background: #e0e6ed;
+  height: 12px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: #2f6fed;
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease-in-out;
+}
+
+.progress-text {
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+  text-align: right;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
+  border: 2px solid transparent;
+}
+
+.card.completed {
+  border-color: #e8efff;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  display: block;
+  letter-spacing: -0.5px;
+}
+
+/* 인포메이션 버튼 */
+.info-btn {
+  font-size: 1.15rem;
+  margin-left: 5px;
+  vertical-align: middle;
+  color: #ccc;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.info-btn:hover {
+  color: #333;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  color: #2f6fed;
+  font-size: 18px;
+}
+
+select {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  color: #333;
+}
+
+/* 성별 버튼 */
+.gender-group {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.gender-btn {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  color: #555;
+  transition: 0.2s;
+}
+
+.gender-btn.active {
+  background: #2f6fed;
+  color: white;
+  border-color: #2f6fed;
+}
+
+/* 슬라이더 스타일 */
+.slider-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#ageBubble {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2f6fed;
+  color: white;
+  padding: 4px 9px;
+  border-radius: 8px;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+#ageBubble::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #2f6fed transparent transparent transparent;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 25px;
+  accent-color: #2f6fed;
+  cursor: pointer;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #888;
+  margin-top: 5px;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: #2f6fed;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background: #2960cf;
+}

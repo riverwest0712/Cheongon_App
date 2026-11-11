@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+            --main-color: #2960cf;
+            --bg-body: #f8f9fa;
+            --white: #ffffff;
+            --text-main: #222;
+            --text-sub: #666;
+            --border-light: #e9ecef;
+            --accent-bg: #f1f4fb;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0; padding: 0; line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+
+        /* --- 정책 요약 카드 --- */
+        .summary-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-top: 6px solid var(--main-color);
+        }
+
+        .policy-tag { color: var(--main-color); font-weight: 700; font-size: 1rem; margin-bottom: 10px; display: block; }
+        .policy-title { font-size: 2rem; margin: 0 0 20px 0; letter-spacing: -0.5px; color: #1a1a1a; }
+
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            background: var(--accent-bg);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .info-item .label { display: block; color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px; }
+        .info-item .value { font-weight: 700; color: var(--main-color); font-size: 1.1rem; }
+
+        /* --- 상세 정보 섹션 --- */
+        .detail-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 5px solid var(--main-color);
+        }
+
+        .info-grid { width: 100%; border-collapse: collapse; }
+        .info-grid th {
+            width: 20%;
+            text-align: left;
+            padding: 20px;
+            background: #fdfdfd;
+            border-bottom: 1px solid var(--border-light);
+            color: #444;
+            vertical-align: top;
+        }
+        .info-grid td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-light);
+            color: #333;
+            white-space: pre-line;
+        }
+
+        /* --- 반응 버튼 --- */
+        .reaction-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .btn-reaction {
+            border: 1px solid #ddd;
+            background: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-reaction:hover { background: var(--accent-bg); border-color: var(--main-color); }
+        .btn-reaction.active { background: var(--main-color); color: white; border-color: var(--main-color); }
+
+        /* --- 댓글 섹션 --- */
+        .comment-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .input-text { padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; }
+        .input-text:focus { border-color: var(--main-color); }
+        
+        .btn-submit {
+            background: var(--main-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .comment-list { list-style: none; padding: 0; }
+        .comment-item { 
+            padding: 20px 0; 
+            border-bottom: 1px solid #eee; 
+            position: relative;
+        }
+        .comment-nick { font-weight: 800; display: block; margin-bottom: 8px; color: var(--main-color); }
+        .comment-content { font-size: 1rem; color: #444; }
+
+        @media (max-width: 768px) {
+            .info-grid th, .info-grid td { display: block; width: 100%; border: none; }
+            .info-grid th { padding-bottom: 5px; background: none; color: var(--main-color); }
+        }
+
+        /* 상단바 */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* 상세 카드보다 위에 있어야 하므로 숫자를 높였습니다 */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e8edf7;
+}
+
+.header-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 26px;
+  font-weight: 900;
+  color: #2f6fed;
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2f6fed, #8eb4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #566174;
+}
+
+.nav a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit;
+  transition: 0.2s;
+}
+
+.nav a:hover,
+.active-link {
+  color: #2f6fed;
+}
+
+.login-btn {
+  border: none;
+  background: #2f6fed;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(47, 111, 237, 0.22);
+  cursor: pointer;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 10px;
+    background: #ffffff;
+    color: rgb(158, 158, 158);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.delete-btn:hover {
+    text-decoration: underline;
+}

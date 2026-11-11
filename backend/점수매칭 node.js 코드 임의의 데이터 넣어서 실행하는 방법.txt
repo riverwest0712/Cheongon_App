@@ -1,0 +1,9 @@
+점수매칭 node.js 코드 임의의 데이터 넣어서 실행하는 방법
+1. score_matching.js 를 저장한 위치에서 cmd 열기
+2. npm install express mysql2 실행
+3. node score_matching.js 실행 -----> 서버 실행 (http://localhost:3000) 뜨면 성공
+4. 아래 임의의 데이터 넣기 
+curl -X POST http://localhost:3000/recommend ^
+More? -H "Content-Type: application/json" ^
+More? -d "{\"region\":\"경기도\",\"gender\":\"여성\",\"military\":\"해당없음\",\"employment\":\"근로자\",\"age\":25,\"income\":3000,\"household\":\"1인가구\",\"vulnerable\":\"저소득 청년\"}"
+5. 결과 나오면 성공

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+        <!-- 카테고리 -->
+        <TextView
+            android:id="@+id/txtCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주거지원"
+            android:textColor="#3F7BFF"
+            android:textStyle="bold"
+            android:textSize="11sp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_category" />
+        <!-- 하트 -->
+        <TextView
+            android:id="@+id/txtDeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/txtCategory"
+            android:layout_marginStart="8dp"
+            android:paddingHorizontal="10dp"
+            android:background="@drawable/bg_category"
+            android:paddingVertical="4dp"
+            android:textColor="#2563EB"
+            android:textStyle="bold"
+            android:textSize="11sp" />
+        <ImageView
+            android:id="@+id/imgBookmark"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_favorite_border"
+            android:contentDescription="북마크" />
+        <!-- 제목 -->
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtCategory"
+            android:layout_marginTop="12dp"
+            android:text="청년 신혼부부 월세 지원사업"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:textSize="18sp" />
+        <!-- 설명 -->
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtTitle"
+            android:layout_marginTop="8dp"
+            android:text="청년 신혼부부가 월세 부담을 줄일 수 있도록 지원하는 사업입니다."
+            android:textColor="#777777"
+            android:textSize="13sp"
+            android:maxLines="2" />
+        <!-- 점수 원 -->
+        <TextView
+            android:id="@+id/txtScore"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/imgBookmark"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_score"
+            android:gravity="center"
+            android:text="70점"
+            android:textColor="#3F7BFF"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

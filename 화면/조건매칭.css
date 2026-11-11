@@ -1,0 +1,314 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f5f8ff;
+  font-family: Arial, sans-serif;
+  color: #172033;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 상단바 */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e8edf7;
+}
+
+.header-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 18px 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 26px;
+  font-weight: 900;
+  color: #2f6fed;
+
+  cursor: pointer;
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2f6fed, #8eb4ff);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: #566174;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #566174;
+}
+
+.nav a:hover {
+  color: #2f6fed;
+}
+
+.login-btn {
+  border: none;
+  background: #2f6fed;
+  color: white;
+
+  padding: 11px 18px;
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(47, 111, 237, 0.22);
+  cursor: pointer;
+}
+
+/* 본문 */
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 24px;
+}
+
+.filter-bar {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 10px 28px rgba(31, 47, 77, 0.07);
+}
+
+.title-area {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.title-area h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.policy-count {
+  color: #2f6fed;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.sort-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-area label {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.sort-area select {
+  border: 1px solid #dce6fb;
+  border-radius: 14px;
+  padding: 10px 14px;
+  background: white;
+  outline: none;
+}
+
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.policy-card {
+  background: white;
+  border-radius: 26px;
+  padding: 26px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+
+  box-shadow: 0 12px 32px rgba(31, 47, 77, 0.08);
+  border: 1px solid #edf1f7;
+}
+
+.policy-card:hover {
+  transform: translateY(-3px);
+  transition: 0.2s;
+  border-color: #2f6fed;
+}
+
+.policy-content {
+  flex: 1;
+}
+
+.policy-top {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.category {
+  background: #eaf1ff;
+  color: #2f6fed;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.deadline {
+  background: #fff0f0;
+  color: #e54848;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.policy-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.policy-card p {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.tag-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.tag-row span {
+  background: #f4f6fa;
+  color: #596579;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reason {
+  display: none;
+}
+
+.score-box {
+  width: 130px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.score {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #eaf1ff;
+  color: #2f6fed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.score-box button {
+  width: 100%;
+  border: none;
+  background: #2f6fed;
+  color: white;
+  border-radius: 14px;
+  padding: 12px 0;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.policy-card {
+  position: relative;
+}
+
+.bookmark-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+  padding: 0;
+}
+
+.bookmark-icon {
+  width: 28px;
+  height: 28px;
+
+  object-fit: contain;
+
+  transition: 0.2s;
+}
+
+.bookmark-btn:hover .bookmark-icon {
+  transform: scale(1.08);
+}
+
+@media (max-width: 760px) {
+  .filter-bar,
+  .policy-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .score-box {
+    width: 100%;
+    align-items: flex-start;
+  }
+}

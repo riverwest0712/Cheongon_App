@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>청온 로그인</title>
+    <style>
+        body {
+            background-color: #f3f7ff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            height: 420px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px; 
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+            box-sizing: border-box; 
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #2f6fed;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #2960cf;
+        }
+
+        .link {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .forgot {
+            display: block;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #555;
+            text-decoration: none;  /* 기본은 밑줄 제거 */
+        }
+
+        .forgot:hover {
+            text-decoration: underline;  /* 호버 시 밑줄 */
+        }
+
+        .signup {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+        p {
+            font-size: 14px;
+            color: #777; 
+        
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>청온</h1>
+    <p>청년 정책을 쉽게 찾고 매칭하세요</p>
+    
+
+    <input type="text" id="email" placeholder="아이디 입력">
+    <input type="password" id="password" placeholder="비밀번호 입력">
+
+    <button class="login-btn" onclick="login()">로그인</button>
+
+    <a href="비밀번호 찾기.html" class="forgot">비밀번호를 잊으셨나요?</a>
+    
+
+    <div class="signup">
+    계정이 없으신가요? 
+    <a href="회원가입.html" class="link">회원가입</a>
+</div>
+
+<script>
+async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert("로그인 성공!");
+
+            // 사용자 정보 저장
+            localStorage.setItem("loginUser", JSON.stringify(result.user));
+
+            // 메인 페이지 이동 (원하면 파일명 맞게 수정)
+            window.location.href = "메인화면.html";
+        } else {
+            alert(result.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("서버 오류");
+    }
+}
+</script>
+
+</body>
+
+
+</html>

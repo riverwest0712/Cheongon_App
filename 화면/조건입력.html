@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>청온 - 조건 설정</title>
+    <link rel="stylesheet" href="조건입력.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">조건 설정</div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text"><span id="progressCount">0</span> / 8 항목 선택됨</div>
+    </div>
+
+    <div class="grid">
+        <div class="card" data-step="age">
+            <div class="card-title">연령</div>
+            <div class="input-row">
+                <i class="fa-solid fa-user icon"></i>
+                <span id="ageValue">29세</span>
+            </div>
+            <div class="slider-wrap">
+                <div id="ageBubble">29</div>
+                <input type="range" id="ageSlider" min="19" max="39" value="29" oninput="updateAge(this.value)">
+                <div class="slider-labels"><span>19</span><span>39</span></div>
+            </div>
+        </div>
+
+        <div class="card" data-step="region">
+            <div class="card-title">거주지</div>
+            <div class="input-row" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                <div style="display: flex; align-items: center; width: 100%; gap: 10px;">
+                    <i class="fa-solid fa-location-dot icon"></i>
+                    <select id="region" onchange="updateSubRegion()">
+                        <option value="" disabled selected>시/도 선택</option>
+                        <option value="seoul">서울특별시</option>
+                        <option value="busan">부산광역시</option>
+                        <option value="daegu">대구광역시</option>
+                        <option value="incheon">인천광역시</option>
+                        <option value="gwangju">광주광역시</option>
+                        <option value="daejeon">대전광역시</option>
+                        <option value="ulsan">울산광역시</option>
+                        <option value="sejong">세종특별자치시</option>
+                        <option value="gyeonggi">경기도</option>
+                        <option value="chungbuk">충청북도</option>
+                        <option value="chungnam">충청남도</option>
+                        <option value="jeonnam">전라남도</option>
+                        <option value="gyeongbuk">경상북도</option>
+                        <option value="gyeongnam">경상남도</option>
+                        <option value="gangwon">강원특별자치도</option>
+                        <option value="jeonbuk">전북특별자치도</option>
+                        <option value="jeju">제주특별자치도</option>
+
+
+                    </select>
+                </div>
+                <div id="subRegionWrapper" style="display: none; width: 100%; padding-left: 28px; box-sizing: border-box;">
+                    <select id="subRegion" onchange="checkProgress()">
+                        <option value="" disabled selected>시/군/구 선택</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-step="gender">
+            <div class="card-title">성별</div>
+            <div class="gender-group">
+                <div class="gender-btn" data-value="남자" onclick="selectGender(this)">남자</div>
+                <div class="gender-btn" data-value="여자" onclick="selectGender(this)">여자</div>
+            </div>
+        </div>
+
+        <div class="card" data-step="job">
+            <div class="card-title">재직 상태</div>
+            <div class="input-row">
+                <i class="fa-solid fa-briefcase icon"></i>
+                <select id="job" onchange="checkProgress()">
+                    <option value="" disabled selected>재직 상태</option>
+                    <option>학생</option>
+                    <option>회사원</option>
+                    <option>공무원</option>
+                    <option>자영업</option>
+                    <option>프리랜서</option>
+                    <option>취업 준비생</option>
+                    <option>무직</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card" data-step="family">
+            <div class="card-title">가구 특성</div>
+            <div class="input-row">
+                <i class="fa-solid fa-house-user icon"></i>
+                <select id="family" onchange="checkProgress()">
+                    <option value="" disabled selected>선택해주세요</option>
+                    <option>일반 가구</option>
+                    <option>1인 가구</option>
+                    <option>다자녀 가구</option>
+                    <option>한부모 가구</option>
+                    <option>신혼 부부</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card" data-step="weak">
+            <div class="card-title">취약계층 여부</div>
+            <div class="input-row">
+                <i class="fa-solid fa-heart icon"></i>
+                <select id="weak" onchange="checkProgress()">
+                    <option value="" disabled selected>해당 사항 선택</option>
+                    <option>해당 없음</option>
+                    <option>기초생활수급자</option>
+                    <option>차상위계층</option>
+                    <option>장애인</option>
+                    <option>국가유공자</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card" data-step="military">
+            <div class="card-title">병역 상태</div>
+            <div class="input-row">
+                <i class="fa-solid fa-shield-halved icon"></i>
+                <select id="military" onchange="checkProgress()">
+                    <option value="" disabled selected>병역 상태</option>
+                    <option>군필</option>
+                    <option>미필</option>
+                    <option>해당 없음(여성 등)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card" data-step="income">
+            <div class="card-title">
+                소득 현황 
+                <button type="button" class="info-btn" onclick="alert('상세 안내 페이지로 이동합니다.')">
+                    <i class="fa-solid fa-circle-info"></i>
+                </button>
+            </div>
+            <div class="input-row">
+                <i class="fa-solid fa-won-sign icon"></i>
+                <select id="income" onchange="checkProgress()">
+                    <option value="" disabled selected>소득 구간 선택</option>
+                    <option>1분위 (하위 10%)</option>
+                    <option>2~5분위</option>
+                    <option>6~8분위</option>
+                    <option>9~10분위 (상위 20%)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="full">
+            <button class="submit-btn" onclick="submitData()">
+                매칭 결과 확인
+            </button>
+        </div>
+    </div>
+</div>
+
+<script 
+src="조건입력.js">
+</script>
+</body>
+</html>

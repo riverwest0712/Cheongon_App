@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청온 - 주거정책 상세정보</title>
+
+    <link rel="stylesheet" href="상세정보.css">
+
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="메인화면.html" class="logo"> <div class="logo-mark">청</div>
+            <span>청온</span>
+        </a>
+        <nav class="nav">
+            <a href="메인화면.html">홈</a>
+            <a href="챗봇.html">챗봇</a>
+            <a href="마이페이지.html">마이페이지</a>
+            <button class="login-btn" id="authBtn"></button>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <section class="summary-card">
+        <span class="policy-tag">청년정책 > 주거지원</span>
+        <h1 class="policy-title" id="policyTitle">로딩 중...</h1>
+        
+        <div class="quick-info">
+            <div class="info-item">
+                <span class="label">정책 번호</span>
+                <span class="value" id="policyNum">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">정책 기간</span>
+                <span class="value" id="applyPeriod">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">신청 링크</span>
+                <span class="value">
+                    <a id="applyLink" href="#" target="_blank" style="color:#2960cf;">바로가기 →</a>
+                </span>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="detail-section">
+        <div class="section-header">정책 상세 내용</div>
+        <table class="info-grid">
+            <tr>
+                <th>지원 기관</th>
+                <td id="organization">-</td>
+            </tr>
+            <tr>
+                <th>지원 나이</th>
+                <td id="ageRange">-</td>
+            </tr>
+            <tr>
+                <th>지원 내용</th>
+                <td id="description">-</td>
+            </tr>
+            <tr>
+                <th>상세 정보</th>
+                <td id="supportContent">-</td>
+            </tr>
+        </table>
+
+        <div class="reaction-bar">
+            <button class="btn-reaction" onclick="sendReaction('like')">
+                <span>👍</span> 도움이 돼요 <strong id="likeCount">0</strong>
+            </button>
+            <button class="btn-reaction" onclick="sendReaction('dislike')">
+                <span>👎</span> 아쉬워요 <strong id="dislikeCount">0</strong>
+            </button>
+        </div>
+    </section>
+
+    <section class="comment-card">
+        <div class="section-header">정책 Q&A 및 소통</div>
+        
+        <div class="comment-form">
+            <input type="text" id="commentInput" class="input-text" placeholder="궁금한 점이나 실제 후기를 남겨주세요.">
+            <button class="btn-submit" onclick="addComment()">댓글 등록하기</button>
+        </div>
+
+        <ul class="comment-list" id="commentList">
+            </ul>
+    </section>
+</div>
+<script src="상세정보.js"></script>
+</body>
+</html>

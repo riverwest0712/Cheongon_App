@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>청온 비밀번호 찾기</title>
+    <style>
+        body {
+            background-color: #f3f7ff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            height: 420px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+            box-sizing: border-box; 
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2f6fed;
+        }
+
+        .find-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #2f6fed;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .find-btn:hover {
+            background: #2960cf;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-link span {
+            color: #2f6fed;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .login-link span:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>청온</h1>
+    <p>가입한 아이디와 이메일을 입력해주세요</p>
+
+    <input type="text" placeholder="아이디">
+    <input type="email" placeholder="이메일">
+
+    <button class="find-btn">비밀번호 찾기</button>
+
+    <div class="login-link">
+    로그인 화면으로 
+    <a href="로그인.html" class="link">돌아가기</a>
+</div>
+
+<style>
+    /* 하단 링크 영역 스타일 */
+    .login-link {
+        margin-top: 20px;
+        border-top: 1px solid #ddd;
+        padding-top: 15px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    /* 링크 기본 상태: 회색, 밑줄 없음 */
+    .login-link .link {
+        color: #555;
+        text-decoration: none;
+    }
+
+    /* 호버 상태: 밑줄 생김 */
+    .login-link .link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+</body>
+</html>

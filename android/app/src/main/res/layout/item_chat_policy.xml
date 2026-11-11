@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 청냥이 답변 아래에 붙는 정책 카드 (누르면 정책 상세로 이동) -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvChatPolicy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="57dp"
+    android:layout_marginBottom="8dp"
+    android:maxWidth="260dp"
+    android:minHeight="48dp"
+    android:gravity="center_vertical"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/bg_category"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:textColor="#2960CF"
+    android:textSize="14sp"
+    android:textStyle="bold" />

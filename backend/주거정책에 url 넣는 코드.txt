@@ -1,0 +1,38 @@
+-- url 넣는 코드
+UPDATE policy
+SET apply_url = CASE policy_id
+    WHEN 'HOUSE0001' THEN 'https://apply.lh.or.kr/lhapply/main.do'
+    WHEN 'HOUSE0002' THEN 'https://www.ulsan.go.kr/s/ulsanyouth/main.ulsan'
+    WHEN 'HOUSE0004' THEN 'https://www.mafra.go.kr/sites/home/index.do'
+    WHEN 'HOUSE0006' THEN 'https://apply.lh.or.kr/lhapply/main.do'
+    WHEN 'HOUSE0007' THEN 'https://apply.lh.or.kr/lhapply/main.do'
+    WHEN 'HOUSE0008' THEN 'https://apply.lh.or.kr/lhapply/main.do'
+    WHEN 'HOUSE0013' THEN 'https://www.seoulhousing.kr/html/0506001.do'
+    WHEN 'HOUSE0015' THEN 'https://youth.seoul.go.kr/index.do'
+    WHEN 'HOUSE0016' THEN 'https://housing.gg.go.kr/'
+    WHEN 'HOUSE0017' THEN 'https://young.busan.go.kr/index.nm'
+    WHEN 'HOUSE0018' THEN 'https://apply.lh.or.kr/lhapply/main.do'
+    WHEN 'HOUSE0020' THEN 'https://nhuf.molit.go.kr/'
+    WHEN 'HOUSE0021' THEN 'https://housing.seoul.go.kr/'
+    WHEN 'HOUSE0022' THEN 'https://nhuf.molit.go.kr/'
+    WHEN 'HOUSE0024' THEN 'https://www.bokjiro.go.kr/ssis-tbu/index.do'
+    WHEN 'HOUSE0026' THEN 'https://www.bokjiro.go.kr/ssis-tbu/index.do'
+END
+WHERE policy_id IN (
+    'HOUSE0001',
+    'HOUSE0002',
+    'HOUSE0004',
+    'HOUSE0006',
+    'HOUSE0007',
+    'HOUSE0008',
+    'HOUSE0013',
+    'HOUSE0015',
+    'HOUSE0016',
+    'HOUSE0017',
+    'HOUSE0018',
+    'HOUSE0020',
+    'HOUSE0021',
+    'HOUSE0022',
+    'HOUSE0024',
+    'HOUSE0026'
+);

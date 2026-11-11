@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.Main">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F6F8">
+
+        <!-- 상단 헤더 -->
+        <include
+            android:id="@+id/topHeader"
+            layout="@layout/top_header"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 메인 스크롤 영역 -->
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/topHeader"
+            app:layout_constraintBottom_toTopOf="@id/bottomMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="24dp">
+
+                <!-- 메인 배너 -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/bannerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#3B6EF6"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="6dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round">
+
+                        <!-- 배너 문구 -->
+                        <LinearLayout
+                            android:layout_width="220dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingStart="22dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:lineSpacingExtra="5dp"
+                                android:text="청년의 오늘을 응원하는&#10;청년 플랫폼, 청온"
+                                android:textColor="#FFFFFF"
+                                android:textSize="19sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:alpha="0.85"
+                                android:lineSpacingExtra="3dp"
+                                android:text="나에게 필요한 기능을&#10;쉽고 빠르게 찾아보세요."
+                                android:textColor="#FFFFFF"
+                                android:textSize="12.5sp" />
+
+                        </LinearLayout>
+
+                        <!-- 배너 캐릭터 -->
+                        <ImageView
+                            android:id="@+id/bannerCharacter"
+                            android:layout_width="150dp"
+                            android:layout_height="165dp"
+                            android:layout_gravity="end|bottom"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="청온 캐릭터"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/bg_cat" />
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/recentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="16dp" android:paddingVertical="8dp">
+                        <LinearLayout
+                            android:id="@+id/recentHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="56dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:padding="8dp"
+                                android:background="@drawable/bg_home_section_icon"
+                                android:src="@drawable/ic_home_recent"
+                                android:importantForAccessibility="no"
+                                app:tint="#3B6EF6" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="최근 기록"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:textColor="#111827" />
+                            <ImageView
+                                android:id="@+id/recentArrow"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_home_expand"
+                                android:importantForAccessibility="no" />
+                        </LinearLayout>
+                        <LinearLayout android:visibility="gone" android:divider="@drawable/home_row_divider" android:showDividers="beginning|middle" android:id="@+id/recentContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="vertical" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/recommendationLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="16dp" android:paddingVertical="8dp">
+                        <LinearLayout
+                            android:id="@+id/recommendationHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="56dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:padding="8dp"
+                                android:background="@drawable/bg_home_section_icon"
+                                android:src="@drawable/ic_home_star"
+                                android:importantForAccessibility="no"
+                                app:tint="#3B6EF6" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="오늘의 추천 정책"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:textColor="#111827" />
+                            <ImageView
+                                android:id="@+id/recommendationArrow"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_home_expand"
+                                android:importantForAccessibility="no" />
+                        </LinearLayout>
+                        <LinearLayout android:visibility="gone" android:divider="@drawable/home_row_divider" android:showDividers="beginning|middle" android:id="@+id/recommendationContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="vertical" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/deadlineLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="16dp" android:paddingVertical="8dp">
+                        <LinearLayout
+                            android:id="@+id/deadlineHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="56dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:padding="8dp"
+                                android:background="@drawable/bg_home_section_icon"
+                                android:src="@drawable/ic_home_calendar"
+                                android:importantForAccessibility="no"
+                                app:tint="#3B6EF6" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="디데이"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:textColor="#111827" />
+                            <ImageView
+                                android:id="@+id/deadlineArrow"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_home_expand"
+                                android:importantForAccessibility="no" />
+                        </LinearLayout>
+                        <LinearLayout android:visibility="gone" android:divider="@drawable/home_row_divider" android:showDividers="beginning|middle" android:id="@+id/deadlineContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="vertical" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/communityLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="16dp" android:paddingVertical="8dp">
+                        <LinearLayout
+                            android:id="@+id/communityHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="56dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:padding="8dp"
+                                android:background="@drawable/bg_home_section_icon"
+                                android:src="@drawable/ic_nav_community"
+                                android:importantForAccessibility="no"
+                                app:tint="#3B6EF6" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="커뮤니티"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:textColor="#111827" />
+                            <ImageView
+                                android:id="@+id/communityArrow"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_home_expand"
+                                android:importantForAccessibility="no" />
+                        </LinearLayout>
+                        <LinearLayout android:visibility="gone" android:divider="@drawable/home_row_divider" android:showDividers="beginning|middle" android:id="@+id/communityContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="vertical" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!-- 하단바 -->
+        <include
+            android:id="@+id/bottomMenu"
+            layout="@layout/bottom_menu"
+            android:layout_width="0dp"
+            android:layout_height="76dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 공통 챗봇 플로팅 버튼 포함 -->
+        <include
+            layout="@layout/layout_floating_chatbot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="96dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 햄버거 메뉴 -->
+    <include
+        android:id="@+id/drawerMenuInclude"
+        layout="@layout/hamburger"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
